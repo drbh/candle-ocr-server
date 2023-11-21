@@ -16,7 +16,6 @@ build: build-front build-app
 run: build
 	./target/release/candle-ocr-server
 
-
 # 
 fadd-app:
 	flyctl apps create $(PROJECT_ID)
@@ -112,3 +111,14 @@ fdestroy:
 
 fpop:
 	fly ssh console -s -a $(PROJECT_ID)%    
+
+flist:
+	flyctl m list -a $(PROJECT_ID) | awk '/candle-ocr-server/{getline; getline; if ($$1 != "") print $$1}'
+
+fzero:
+	flyctl m destroy --force -a $(PROJECT_ID) `flyctl m list -a $(PROJECT_ID) | awk '/candle-ocr-server/{getline; getline; if ($$1 != "") print $$1}'`
+
+flog:
+	flyctl logs -a $(PROJECT_ID)
+
+update: build fbuild fzero fdeploy-large

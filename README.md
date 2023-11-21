@@ -10,7 +10,7 @@ Try it out at https://ocr.dholtz.com
 
 **Note: the app performance may be impacted by other users since the model is running on a small CPU bound VM.
 
-# oooo, show me what it do 🚀
+# oooo, show me what it does 🚀
 
 ## Detect from freeform
 
